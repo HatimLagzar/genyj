@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RefreshController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Products\GetFeaturedProductsController;
+use App\Http\Controllers\Api\Products\GetProductController;
 use App\Http\Controllers\Api\Products\IndexController as ProductsIndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,5 @@ Route::prefix('products')
     ->group(function () {
         Route::get('/', ProductsIndexController::class);
         Route::get('featured', GetFeaturedProductsController::class);
+        Route::get('{product}', GetProductController::class);
     });
