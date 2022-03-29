@@ -1,0 +1,23 @@
+#register-page {
+	button[type="submit"] {
+		margin-bottom: .625rem;
+		display: inline-block;
+	}
+
+	.call-to-action {
+		margin-top: 1.875rem;
+	}
+
+	.go-to-register-page {
+		display: inline-block;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#register-page .call-to-action {
+		a,
+		button {
+			width: 100%;
+		}
+	}
+}

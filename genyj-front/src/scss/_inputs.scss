@@ -1,0 +1,36 @@
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: black !important;
+	opacity: 1 !important; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+	color: black !important;
+}
+
+.form-control {
+	max-width: 325px;
+	border: 2px solid black;
+	border-radius: 0;
+	text-align: center;
+	margin: 0 auto 0.625rem;
+	display: block;
+	color: black;
+	background-color: white;
+
+	&:focus {
+		background-color: white;
+		box-shadow: none;
+		outline: none;
+		border: 2px solid black;
+		color: black;
+	}
+}
+
+
+@media screen and (max-width: 500px) {
+	.form-control {
+		max-width: none;
+		width: 100%;
+	}
+}
+

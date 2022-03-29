@@ -1,0 +1,52 @@
+#main-nav {
+	background-color: #111;
+	color: white;
+	padding: 2.5rem 6.25rem;
+
+	.header-container {
+		padding-top: 2.5rem;
+		padding-bottom: 2.5rem;
+	}
+
+	.nav-link {
+		font-size: 1rem;
+		font-weight: 500;
+		color: white;
+
+		&:hover {
+			text-decoration: none;
+			color: white;
+		}
+	}
+
+	.navbar-toggler {
+		width: 25px;
+		height: 25px;
+		color: white;
+		padding: 0;
+		cursor: pointer;
+
+		i {
+			font-size: 25px;
+		}
+
+		&:focus {
+			box-shadow: none;
+			outline-offset: 2px;
+			outline: 1px solid white;
+		}
+	}
+}
+
+
+@media screen and (max-width: 768px) {
+	#main-nav {
+		padding: 2.5rem 3.125rem;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#main-nav {
+		padding: 2.5rem 1.5625rem;
+	}
+}

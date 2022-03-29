@@ -1,0 +1,28 @@
+#similar-products {
+	.row {
+		--bs-gutter-x: 1rem;
+		--bs-gutter-y: 1rem;
+	}
+}
+
+
+@media screen and (max-width: 768px) {
+	#similar-products {
+		.product-item .title {
+			line-height: 1.4rem;
+		}
+
+		.product-item .title,
+		.product-item .price {
+			font-size: .875rem;
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#similar-products {
+		.product-item .title {
+			line-height: 1.25rem;
+		}
+	}
+}

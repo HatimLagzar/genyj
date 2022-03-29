@@ -1,0 +1,17 @@
+#store-page .row {
+	--bs-gutter-x: 1rem;
+	--bs-gutter-y: 1.875rem;
+}
+
+
+#store-page .product-item {
+	margin-bottom: 0;
+}
+
+
+@media screen and (max-width: 768px){
+	#store-page .row {
+		--bs-gutter-x: 2.6875rem;
+		--bs-gutter-y: 1.875rem;
+	}
+}

@@ -1,0 +1,31 @@
+#footer {
+	background-color: #F5F5F5;
+	color: black;
+	padding: 5rem 0 7.5rem;
+
+	.section-title {
+		margin-bottom: .625rem;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#footer {
+		padding: 2.5rem 0 5rem;
+
+		.section-title {
+			font-size: 1.125rem;
+		}
+
+		p {
+			font-size: 0.875rem;
+		}
+
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#footer {
+		padding: 2.5rem 0 3.75rem;
+	}
+}
+

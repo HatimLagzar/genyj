@@ -1,0 +1,101 @@
+#product-page {
+	#back-to-store {
+		margin-bottom: 1.25rem;
+		padding-right: 1.5rem;
+		padding-left: 1.5rem;
+		width: auto;
+		display: inline-block;
+	}
+
+	.extra-images {
+		margin-top: 0.615rem;
+
+		.row {
+			--bs-gutter-x: 1rem;
+		}
+	}
+
+	.product-title {
+		text-transform: none;
+		font-size: 1.6875rem;
+		line-height: 2.5625rem;
+		margin-bottom: 0.625rem;
+	}
+
+	.price {
+		margin-bottom: 1.875rem;
+	}
+
+	.old-price {
+		margin-left: 0.625rem;
+	}
+
+	.washing-degree-input {
+		display: none;
+	}
+
+	.washing-degree-input:checked + label {
+		background-color: black;
+		color: white;
+	}
+
+	.available-degrees,
+	.available-sizes,
+	.available-slims,
+	.available-height {
+		margin-bottom: 0.625rem;
+	}
+
+	.radio-label {
+		min-width: 90px;
+		text-align: center;
+		margin-right: 0.875rem;
+		margin-bottom: 0.875rem;
+	}
+
+	.call-to-action button {
+		width: 325px;
+		padding-right: 0;
+		padding-left: 0;
+
+		&:first-of-type {
+			margin-bottom: 0.625rem;
+		}
+	}
+
+	.description {
+		margin-top: 1.875rem;
+
+		h2 {
+			font-size: 1rem;
+			margin-bottom: 0.625rem;
+		}
+
+		p {
+			font-size: 0.875rem;
+			margin-bottom: 0;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#product-page {
+		.row {
+			--bs-gutter-y: .625rem;
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#product-page {
+		.available-height {
+			margin-bottom: 1rem;
+		}
+
+		.call-to-action {
+			button {
+				width: 100%;
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+.section-push {
+	margin-top: 120px;
+}
+
+@media screen and (max-width: 768px) {
+	.section-push {
+		margin-top: 80px;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.section-push {
+		margin-top: 60px;
+	}
+}

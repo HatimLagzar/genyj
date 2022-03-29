@@ -1,0 +1,28 @@
+#copyright {
+	background-color: black;
+	color: white;
+	padding: .8125rem 0;
+
+	p {
+		margin-bottom: 0 !important;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#copyright {
+		padding: .625rem 0;
+
+		p {
+			font-size: 0.875rem;
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#copyright {
+		p {
+			font-size: .75rem;
+		}
+	}
+}
+

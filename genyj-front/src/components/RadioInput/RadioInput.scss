@@ -1,0 +1,55 @@
+.radio-input {
+	display: none;
+}
+
+.radio-input:disabled + label {
+	border-color: #CCCCCC;
+	color: #CCCCCC;
+
+	&:hover,
+	&:focus {
+		border-color: #CCCCCC;
+		color: #CCCCCC;
+		background-color: white;
+		cursor: default;
+	}
+}
+
+.radio-input:checked + label {
+	background-color: black;
+	color: white;
+}
+
+.radio-label {
+	border: 1px solid black;
+	padding: 3px 1.25rem;
+	color: black;
+	font-size: 0.8125rem;
+	border-radius: 100px;
+	margin-right: .375rem;
+	line-height: 1rem;
+	transition: all .1s;
+	cursor: pointer;
+
+	&:last-of-type {
+		margin: 0;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: black;
+		color: white;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.radio-label {
+		margin-bottom: .375rem;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.radio-label {
+		margin-bottom: 0;
+	}
+}

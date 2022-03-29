@@ -1,0 +1,23 @@
+.social-network-icons {
+	ul li {
+		list-style-type: none;
+		display: inline-block;
+		margin-right: 1.25rem;
+
+		i {
+			font-size: 4.5rem;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.social-network-icons {
+		ul li {
+			margin-right: 1rem;
+
+			i {
+				font-size: 3.125rem;
+			}
+		}
+	}
+}

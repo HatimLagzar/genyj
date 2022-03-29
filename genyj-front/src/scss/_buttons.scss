@@ -1,0 +1,33 @@
+.btn {
+	border-radius: 0;
+	font-size: 1rem;
+	padding: .25rem 5rem;
+	text-transform: uppercase;
+	display: block;
+	margin: 0 auto;
+	transition: all .2s;
+}
+
+.btn-dark {
+	background-color: black;
+	border: 2px solid black;
+
+	&:hover,
+	&:focus {
+		background-color: #fff;
+		border: 2px solid black;
+		color: black;
+	}
+}
+
+.btn-outline-dark {
+	border: 2px solid black;
+}
+
+
+
+@media screen and (max-width: 500px) {
+	.btn {
+		padding: .25rem 2.325rem;
+	}
+}

@@ -1,0 +1,22 @@
+.navbar-brand img {
+	width: 100%;
+	max-width: 200px;
+}
+
+@media screen and (max-width: 1200px) {
+	.navbar-brand img {
+		max-width: 150px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.navbar-brand img {
+		max-width: 120px;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.navbar-brand img {
+		max-width: 100px;
+	}
+}

@@ -1,0 +1,30 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Hover.css
+@import '~hover.css/scss/hover';
+
+// Font Awesome Icons
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+@import './global';
+
+@import './typography';
+
+@import './buttons';
+
+@import './inputs';
+
+@import './layouts';
+
+@import './utils';
+
+@import './overrides';
+
+@import '~toastr';

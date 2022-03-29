@@ -1,0 +1,15 @@
+.header-container {
+	padding: 40px 100px 80px;
+}
+
+@media screen and (max-width: 768px) {
+	.header-container {
+		padding: 40px 50px 20px;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.header-container {
+		padding: 40px 25px 20px;
+	}
+}
