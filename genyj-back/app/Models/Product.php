@@ -77,6 +77,11 @@ class Product extends ModelUuid
         return $this->getAttribute(self::PRICE_COLUMN);
     }
 
+    public function getPriceFormatted(): int
+    {
+        return number_format($this->getPrice() / 100, 2);
+    }
+
     public function getDiscount(): string
     {
         return $this->getAttribute(self::DISCOUNT_COLUMN);
