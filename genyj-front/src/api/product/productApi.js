@@ -16,3 +16,11 @@ export const getPaginated = (page = null) => {
     }
   });
 };
+
+export const findById = (id) => {
+  return axios.get('/api/products/' + id).catch((error) => {
+    if (error.response && error.response.status === 500) {
+      toastr.error(error.response.data.message);
+    }
+  });
+}
