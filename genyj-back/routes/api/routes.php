@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RefreshController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Order\CreateOrderController;
 use App\Http\Controllers\Api\Products\GetFeaturedProductsController;
 use App\Http\Controllers\Api\Products\GetProductController;
 use App\Http\Controllers\Api\Products\IndexController as ProductsIndexController;
@@ -31,4 +32,9 @@ Route::prefix('products')
         Route::get('/', ProductsIndexController::class);
         Route::get('featured', GetFeaturedProductsController::class);
         Route::get('{product}', GetProductController::class);
+    });
+
+Route::prefix('order')
+    ->group(function () {
+        Route::post('/', CreateOrderController::class);
     });
