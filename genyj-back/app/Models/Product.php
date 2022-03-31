@@ -30,15 +30,15 @@ class Product extends ModelUuid
         self::THUMBNAIL_COLUMN,
     ];
 
-    private Collection $variants;
-    private Collection $extraImages;
+    private ?Collection $variants = null;
+    private ?Collection $extraImages = null;
 
     public function getId(): string
     {
         return $this->getAttribute(self::ID_COLUMN);
     }
 
-    public function getVariants(): Collection
+    public function getVariants(): ?Collection
     {
         return $this->variants;
     }
@@ -50,7 +50,7 @@ class Product extends ModelUuid
         return $this;
     }
 
-    public function getExtraImages(): Collection
+    public function getExtraImages(): ?Collection
     {
         return $this->extraImages;
     }
@@ -82,7 +82,7 @@ class Product extends ModelUuid
         return number_format($this->getPrice() / 100, 2);
     }
 
-    public function getDiscount(): string
+    public function getDiscount(): int
     {
         return $this->getAttribute(self::DISCOUNT_COLUMN);
     }

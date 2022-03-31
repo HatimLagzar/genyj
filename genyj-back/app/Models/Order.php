@@ -23,6 +23,8 @@ class Order extends ModelUuid
         self::SLIM_COLUMN
     ];
 
+    private ?Product $product = null;
+
     public function getId(): string
     {
         return $this->getAttribute(self::ID_COLUMN);
@@ -46,5 +48,17 @@ class Order extends ModelUuid
     public function getSlim(): int
     {
         return $this->getAttribute(self::SLIM_COLUMN);
+    }
+
+    public function setProduct(Product $product): self
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
     }
 }

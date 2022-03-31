@@ -11,4 +11,11 @@ class OrderRepository
         return Order::query()
             ->create($attributes);
     }
+
+    public function findById(string $id): ?Order
+    {
+        return Order::query()
+            ->where(Order::ID_COLUMN, $id)
+            ->first();
+    }
 }

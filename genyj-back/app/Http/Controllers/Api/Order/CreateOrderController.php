@@ -24,7 +24,7 @@ class CreateOrderController extends BaseController
 
             return $this->withSuccess([
                 'message' => 'Order created successfully.',
-                'order' => $order
+                'order' => $order,
             ]);
         } catch (Throwable $e) {
             Log::error($e->getMessage());
