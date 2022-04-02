@@ -4,6 +4,7 @@ namespace App\Services\Domain\Order;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use App\Services\Core\Order\OrderService;
 use App\Services\Core\Product\ProductService;
 use App\Services\Domain\Order\Exceptions\InvalidPayloadException;
@@ -25,9 +26,8 @@ class CreateOrderService
     /**
      * @throws InvalidPayloadException
      * @throws ProductNotFoundException
-     * @throws ApiErrorException
      */
-    public function create(array $attributes): Order
+    public function create(array $attributes, ?User $user = null): Order
     {
         if (
             Arr::has(
@@ -46,6 +46,10 @@ class CreateOrderService
         $product = $this->productService->findById($attributes[Order::PRODUCT_ID_COLUMN]);
         if (!$product instanceof Product) {
             throw new ProductNotFoundException();
+        }
+
+        if ($user instanceof User) {
+            $attributes[Order::USER_ID_COLUMN] = $user->getId();
         }
 
         return $this->orderService->create($attributes);

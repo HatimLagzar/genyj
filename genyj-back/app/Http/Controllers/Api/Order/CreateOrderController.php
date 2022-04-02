@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Order;
 
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\CreateOrderRequest;
+use App\Models\User;
 use App\Services\Domain\Order\CreateOrderService;
 use Illuminate\Support\Facades\Log;
 use Throwable;
@@ -20,7 +21,12 @@ class CreateOrderController extends BaseController
     public function __invoke(CreateOrderRequest $request)
     {
         try {
-            $order = $this->createOrderService->create($request->all());
+            $authenticatedUser = auth()->guard('api')->user();
+            if ($authenticatedUser instanceof User) {
+                $order = $this->createOrderService->create($request->all(), $authenticatedUser);
+            } else {
+                $order = $this->createOrderService->create($request->all());
+            }
 
             return $this->withSuccess([
                 'message' => 'Order created successfully.',

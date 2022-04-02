@@ -24,7 +24,8 @@ class OrderTransformer
                 : null,
             'size'    => $order->getSize(),
             'length'  => $order->getLength(),
-            'slim'    => $order->getSlim()
+            'slim'    => $order->getSlim(),
+            'userId'  => $order->getUserId(),
         ];
     }
 }
