@@ -17,6 +17,10 @@ export const getOrder = (id) => {
   return axios.get('/api/order/' + id);
 }
 
+export const getOrderWithPaymentIntent = (id) => {
+  return axios.get('/api/order/' + id + '/paymentIntent');
+}
+
 export const saveAddress = (id, formData) => {
   return axios.post('/api/order/' + id + '/address', formData);
 }
