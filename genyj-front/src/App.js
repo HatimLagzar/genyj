@@ -13,6 +13,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 import { useDispatch } from 'react-redux';
 import authService from './app/services/auth/AuthService';
 import './scss/app.scss';
+import OrderPage from './pages/OrderPage/OrderPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
           <Route path={'/'} element={<Home />} exact />
           <Route path={'/store'} element={<ProductsPage />} exact />
           <Route path={'/product/:id'} element={<ProductPage />} exact />
+          <Route path={'/order/:id'} element={<OrderPage />} exact />
           <Route path={'/about'} element={<AboutUs />} exact />
           <Route path={'/contact'} element={<ContactPage />} exact />
           <Route path={'/login'} element={<LoginPage />} exact />
