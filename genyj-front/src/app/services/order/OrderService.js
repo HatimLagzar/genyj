@@ -1,5 +1,10 @@
 import toastr from 'toastr';
-import { createOrder, getOrder, saveAddress } from '../../../api/order/orderApi';
+import {
+  createOrder,
+  getOrder,
+  getOrderWithPaymentIntent,
+  saveAddress
+} from '../../../api/order/orderApi';
 
 class OrderService {
   validate(orderState) {
@@ -60,9 +65,22 @@ class OrderService {
     });
   }
 
+  getOrderWithPaymentIntent(id) {
+    return getOrderWithPaymentIntent(id).catch(error => {
+      if (error.response) {
+        toastr.error(error.response.data.message);
+
+        return;
+      }
+
+      console.log(error);
+    });
+  }
+
   saveAddress(address, id) {
     const formData = new FormData();
     formData.set('phone', address.phone);
+    formData.set('email', address.email);
     formData.set('city', address.city);
     formData.set('address', address.address);
     formData.set('address2', address.address2);
