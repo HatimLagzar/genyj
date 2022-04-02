@@ -2,7 +2,6 @@ import { login, refresh } from '../../../api/auth/loginApi';
 import jwtDecode from 'jwt-decode';
 import { setToken, setUser } from '../../features/auth/authSlice';
 import toastr from 'toastr';
-import toast from 'bootstrap/js/src/toast';
 
 class AuthService {
   login(email, password) {
@@ -78,7 +77,7 @@ class AuthService {
       return null;
     }
 
-    return jwtDecode(localStorage.getItem('authToken'));
+    return JSON.parse(localStorage.getItem('authUser'));
   }
 
   refreshToken(token) {

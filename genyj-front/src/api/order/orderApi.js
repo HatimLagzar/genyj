@@ -24,3 +24,7 @@ export const getOrderWithPaymentIntent = (id) => {
 export const saveAddress = (id, formData) => {
   return axios.post('/api/order/' + id + '/address', formData);
 }
+
+export const updateStatus = (id) => {
+  return axios.put('/api/order/' + id + '/status');
+}

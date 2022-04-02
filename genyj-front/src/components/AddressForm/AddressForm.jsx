@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import TextInput from '../TextInput/TextInput';
 import authService from '../../app/services/auth/AuthService';
 
@@ -42,26 +41,29 @@ export default function({ handleSubmit }) {
           onChange={e => setEmail(e.currentTarget.value)}
         />
         : ''
-
     }
+
     <TextInput
       type={'text'}
       placeholder={'Ville'}
       required={true}
       onChange={e => setCity(e.currentTarget.value)}
     />
+
     <TextInput
       type={'text'}
       placeholder={'Adresse'}
       required={true}
       onChange={e => setAddress(e.currentTarget.value)}
     />
+
     <TextInput
       type={'text'}
       placeholder={'Adresse Ligne 2'}
       required={false}
       onChange={e => setAddress2(e.currentTarget.value)}
     />
+
     <div className='d-flex flex-column call-to-action'>
       <button
         type='submit'

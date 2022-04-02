@@ -21,6 +21,7 @@ class Order extends ModelUuid
     public const ADDRESS_L2_COLUMN = 'address_l2';
     public const USER_ID_COLUMN = 'user_id';
     public const STRIPE_PAYMENT_ID_COLUMN = 'stripe_payment_id';
+    public const IS_PAID_COLUMN = 'is_paid';
 
     protected $fillable = [
         self::PRODUCT_ID_COLUMN,

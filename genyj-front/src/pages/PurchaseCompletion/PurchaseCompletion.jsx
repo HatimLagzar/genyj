@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getOrder } from '../../api/order/orderApi';
 import { useParams } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner';
 import toastr from 'toastr';
 import Navbar from '../../components/Navbar/Navbar';
 import OrderDetails from '../../components/OrderDetails/OrderDetails';
+import orderService from '../../app/services/order/OrderService';
 
 export default function() {
   const [order, setOrder] = useState(null);
@@ -13,7 +13,7 @@ export default function() {
 
   useEffect(() => {
     if (order === null) {
-      getOrder(orderId).then(response => {
+      orderService.getOrder(orderId).then(response => {
         if (response.status !== 200) {
           toastr.error('Error occurred!');
         }
@@ -21,8 +21,18 @@ export default function() {
         setOrder(response.data.order);
         setIsLoading(false);
       }).catch(() => setIsLoading(false));
+    } else {
+      orderService.updateStatus(orderId)
+        .then(response => {
+          if (response.status !== 200) {
+            toastr.error(response.data.message)
+
+            return
+          }
+        })
     }
   });
+
   return <>
     <Navbar />
     <section className={'section-push'}>

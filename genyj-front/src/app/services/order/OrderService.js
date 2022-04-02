@@ -3,7 +3,8 @@ import {
   createOrder,
   getOrder,
   getOrderWithPaymentIntent,
-  saveAddress
+  saveAddress,
+  updateStatus
 } from '../../../api/order/orderApi';
 
 class OrderService {
@@ -94,6 +95,19 @@ class OrderService {
 
       console.log(error);
     });
+  }
+
+  updateStatus(orderId) {
+    return updateStatus(orderId)
+      .catch(error => {
+        if (error.response) {
+          toastr.error(error.response.data.message)
+
+          return
+        }
+
+        console.log(error)
+    })
   }
 }
 
