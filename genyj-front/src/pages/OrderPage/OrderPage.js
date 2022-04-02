@@ -27,7 +27,7 @@ export default function() {
 
   useEffect(() => {
     if (order === null) {
-      orderService.getOrder(id).then(response => {
+      orderService.getOrderWithPaymentIntent(id).then(response => {
         setOrder(response.data.order);
         setClientSecret(response.data.clientSecret);
       });
@@ -64,7 +64,7 @@ export default function() {
                     ? <AddressForm handleSubmit={handleAddressSubmit} />
                     : clientSecret && (
                     <Elements options={options} stripe={stripePromise}>
-                      <CheckoutForm />
+                      <CheckoutForm order={order} />
                     </Elements>
                   )
                 }
@@ -129,7 +129,9 @@ export default function() {
             </div>
           </div>
         </section>
-        : <Spinner />
+        : <section className={'section-push'}>
+          <Spinner />
+        </section>
     }
   </section>;
 }
