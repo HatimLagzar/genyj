@@ -1,0 +1,34 @@
+#order-owner-confirmation {
+  max-width: 250px;
+  background-color: #EEE;
+  padding: 20px;
+  margin: 0 auto;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 10px;
+    position: absolute;
+    height: 22px;
+    display: inline-block;
+    top: -6px;
+    left: 48%;
+    background-color: #EEE;
+    /* border: 1px solid #DDD; */
+    border-bottom: none;
+    transform: rotate(45deg);
+  }
+
+  p {
+    font-size: .85rem;
+    margin-bottom: .5rem !important;
+  }
+
+  button {
+    width: 100%;
+    text-align: center;
+    padding: 4px 0;
+    margin-bottom: 5px;
+    font-size: .86rem;
+  }
+}
