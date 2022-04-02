@@ -2,6 +2,7 @@ import { login, refresh } from '../../../api/auth/loginApi';
 import jwtDecode from 'jwt-decode';
 import { setToken, setUser } from '../../features/auth/authSlice';
 import toastr from 'toastr';
+import toast from 'bootstrap/js/src/toast';
 
 class AuthService {
   login(email, password) {
@@ -21,8 +22,20 @@ class AuthService {
 
         return response;
       })
-      .catch((errorMessage) => {
-        console.error(errorMessage);
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.status) {
+            toastr.error('Incorrect credentials!')
+
+            return
+          }
+
+          toastr.error(error.response.data.message)
+
+          return
+        }
+
+        console.log(error)
       });
   }
 
@@ -35,6 +48,9 @@ class AuthService {
     return JSON.parse(localStorage.getItem('authUser'));
   }
 
+  /**
+   * @returns {boolean}
+   */
   hasBeenAuthenticated() {
     return (
       localStorage.getItem('authToken') !== null &&
@@ -53,9 +69,19 @@ class AuthService {
     return true;
   }
 
-  verifyAuthentication() {
-    if (this.hasBeenAuthenticated()) {
+  /**
+   * @returns {boolean}
+   */
+  isAuth() {
+    if (this.hasBeenAuthenticated() === false) {
+      return false
     }
+
+    if (this.isExpired()) {
+      return false;
+    }
+
+    return true;
   }
 
   getToken() {
