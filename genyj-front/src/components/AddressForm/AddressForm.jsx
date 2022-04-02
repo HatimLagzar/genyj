@@ -6,6 +6,7 @@ import authService from '../../app/services/auth/AuthService';
 export default function({ handleSubmit }) {
   const [isLoading, setIsLoading] = useState(false);
   const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
   const [address2, setAddress2] = useState('');
@@ -16,6 +17,7 @@ export default function({ handleSubmit }) {
 
     const addressState = {
       phone,
+      email: authService.isExpired() === false ? authService.getUser().email : email,
       city,
       address,
       address2
@@ -31,6 +33,17 @@ export default function({ handleSubmit }) {
       required={true}
       onChange={e => setPhone(e.currentTarget.value)}
     />
+    {
+      authService.isExpired() === true
+        ? <TextInput
+          type={'email'}
+          placeholder={'Email'}
+          required={true}
+          onChange={e => setEmail(e.currentTarget.value)}
+        />
+        : ''
+
+    }
     <TextInput
       type={'text'}
       placeholder={'Ville'}
