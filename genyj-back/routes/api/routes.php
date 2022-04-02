@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Auth\RefreshController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Order\CreateOrderController;
 use App\Http\Controllers\Api\Order\GetOrderController;
+use App\Http\Controllers\Api\Order\SaveAddressController;
 use App\Http\Controllers\Api\Products\GetFeaturedProductsController;
 use App\Http\Controllers\Api\Products\GetProductController;
 use App\Http\Controllers\Api\Products\IndexController as ProductsIndexController;
@@ -39,4 +40,5 @@ Route::prefix('order')
     ->group(function () {
         Route::get('{order}', GetOrderController::class);
         Route::post('/', CreateOrderController::class);
+        Route::post('{order}/address', SaveAddressController::class);
     });
