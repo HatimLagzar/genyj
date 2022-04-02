@@ -42,4 +42,9 @@ class OrderService
 
         return $order;
     }
+
+    public function update(Order $order, array $attributes): bool
+    {
+        return $this->orderRepository->update($order->getId(), $attributes);
+    }
 }

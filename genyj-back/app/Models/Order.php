@@ -15,12 +15,18 @@ class Order extends ModelUuid
     public const SIZE_COLUMN = 'size';
     public const LENGTH_COLUMN = 'length';
     public const SLIM_COLUMN = 'slim';
+    public const PHONE_COLUMN = 'phone';
+    public const CITY_COLUMN = 'city';
+    public const ADDRESS_L1_COLUMN = 'address_l1';
+    public const ADDRESS_L2_COLUMN = 'address_l2';
+    public const USER_ID_COLUMN = 'user_id';
 
     protected $fillable = [
         self::PRODUCT_ID_COLUMN,
         self::SIZE_COLUMN,
         self::LENGTH_COLUMN,
-        self::SLIM_COLUMN
+        self::SLIM_COLUMN,
+        self::USER_ID_COLUMN
     ];
 
     private ?Product $product = null;
@@ -60,5 +66,10 @@ class Order extends ModelUuid
     public function getProduct(): ?Product
     {
         return $this->product;
+    }
+
+    public function getUserId(): ?string
+    {
+        return $this->getAttribute(self::USER_ID_COLUMN);
     }
 }

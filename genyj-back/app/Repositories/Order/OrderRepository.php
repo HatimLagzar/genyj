@@ -18,4 +18,11 @@ class OrderRepository
             ->where(Order::ID_COLUMN, $id)
             ->first();
     }
+
+    public function update(string $id, array $attributes): bool
+    {
+        return Order::query()
+            ->where(Order::ID_COLUMN, $id)
+            ->update($attributes) > 0;
+    }
 }
