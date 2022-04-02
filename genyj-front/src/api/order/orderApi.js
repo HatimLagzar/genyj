@@ -28,3 +28,7 @@ export const saveAddress = (id, formData) => {
 export const updateStatus = (id) => {
   return axios.put('/api/order/' + id + '/status');
 }
+
+export const updatePaymentType = (id, formData) => {
+  return axios.post('/api/order/' + id + '/paymentType', formData)
+}

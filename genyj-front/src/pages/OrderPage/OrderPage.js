@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import orderService from '../../app/services/order/OrderService';
 import './OrderPage.scss';
@@ -9,6 +9,7 @@ import CheckoutForm from '../../components/CheckoutForm/CheckoutForm';
 import AddressForm from '../../components/AddressForm/AddressForm';
 import Spinner from '../../components/Spinner/Spinner';
 import OrderDetails from '../../components/OrderDetails/OrderDetails';
+import ChoosePaymentType from '../../components/ChoosePaymentType/ChoosePaymentType';
 
 const stripePromise = loadStripe('pk_test_XMEN2RYVp2gz0oe2Tkdnqyzs00vfPlL5tJ');
 
@@ -16,12 +17,13 @@ export default function() {
   const { id } = useParams();
   const [order, setOrder] = useState(null);
   const [clientSecret, setClientSecret] = useState('');
-  const [addressSubmitted, setAddressSubmitted] = useState(false);
+  const [step, setStep] = useState('PAYMENT_TYPE_STEP'); // PAYMENT_TYPE_STEP | ADDRESS_STEP
+  const navigator = useNavigate()
 
   function handleAddressSubmit(addressState) {
     return orderService.saveAddress(addressState, order.id).then((response) => {
       if (response.status === 200) {
-        setAddressSubmitted(true);
+        setStep('PAYMENT_TYPE_STEP');
       }
     });
   }
@@ -61,13 +63,23 @@ export default function() {
             <div className='row'>
               <div className='col-lg-6'>
                 {
-                  addressSubmitted === false
+                  step === 'ADDRESS_STEP'
                     ? <AddressForm handleSubmit={handleAddressSubmit} />
-                    : clientSecret && (
+                    : ''
+                }
+                {
+                  step === 'PAYMENT_TYPE_STEP'
+                    ? <ChoosePaymentType nextStepCallback={() => navigator('/purchase-completion/' + order.id)} />
+                    : ''
+                }
+                {
+                  step === 'PAYMENT_STEP'
+                    ? clientSecret && (
                     <Elements options={options} stripe={stripePromise}>
                       <CheckoutForm order={order} />
                     </Elements>
                   )
+                    : ''
                 }
               </div>
               <div className='col' />

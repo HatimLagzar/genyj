@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Order\CreateOrderController;
 use App\Http\Controllers\Api\Order\GetOrderController;
 use App\Http\Controllers\Api\Order\GetOrderWithPaymentIntentController;
 use App\Http\Controllers\Api\Order\SaveAddressController;
+use App\Http\Controllers\Api\Order\UpdatePaymentTypeController;
 use App\Http\Controllers\Api\Order\UpdateStatusController;
 use App\Http\Controllers\Api\Products\GetFeaturedProductsController;
 use App\Http\Controllers\Api\Products\GetProductController;
@@ -45,4 +46,5 @@ Route::prefix('order')
         Route::get('{order}/paymentIntent', GetOrderWithPaymentIntentController::class);
         Route::post('{order}/address', SaveAddressController::class);
         Route::put('{order}/status', UpdateStatusController::class);
+        Route::post('{order}/paymentType', UpdatePaymentTypeController::class);
     });

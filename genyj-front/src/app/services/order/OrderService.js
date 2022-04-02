@@ -4,6 +4,7 @@ import {
   getOrder,
   getOrderWithPaymentIntent,
   saveAddress,
+  updatePaymentType,
   updateStatus
 } from '../../../api/order/orderApi';
 
@@ -98,16 +99,30 @@ class OrderService {
   }
 
   updateStatus(orderId) {
-    return updateStatus(orderId)
-      .catch(error => {
-        if (error.response) {
-          toastr.error(error.response.data.message)
+    return updateStatus(orderId).catch(error => {
+      if (error.response) {
+        toastr.error(error.response.data.message);
 
-          return
-        }
+        return;
+      }
 
-        console.log(error)
-    })
+      console.log(error);
+    });
+  }
+
+  updatePaymentType(id, type) {
+    const formData = new FormData();
+    formData.set('type', type);
+
+    return updatePaymentType(id, formData).catch(error => {
+      if (error.response) {
+        toastr.error(error.response.data.message);
+
+        return;
+      }
+
+      console.log(error);
+    });
   }
 }
 

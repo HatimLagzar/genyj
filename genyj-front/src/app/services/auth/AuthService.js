@@ -59,7 +59,9 @@ class AuthService {
 
   isExpired() {
     if (this.getToken() === 'undefined') {
-      return
+      this.logout()
+
+      return true;
     }
 
     if (this.hasBeenAuthenticated()) {
