@@ -8,10 +8,12 @@ use App\Models\Product;
 use App\Services\Core\Order\OrderService;
 use App\Transformers\Order\OrderTransformer;
 use Illuminate\Support\Facades\Log;
+use Stripe\PaymentIntent;
+use Stripe\Stripe;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
-class GetOrderController extends BaseController
+class GetOrderWithPaymentIntentController extends BaseController
 {
     private OrderService $orderService;
     private OrderTransformer $orderTransformer;
@@ -35,13 +37,40 @@ class GetOrderController extends BaseController
                 return $this->withError('Product not found!', Response::HTTP_NOT_FOUND);
             }
 
+            // This is your test secret API key.
+            Stripe::setApiKey('sk_test_UgISPYubqAmVMgBaeCFQy2uc00U855Xkfe');
+
+            $paymentIntent = PaymentIntent::create([
+                'amount'                    => $this->calculateAmount($product),
+                'currency'                  => 'MAD',
+                'automatic_payment_methods' => [
+                    'enabled' => true,
+                ],
+            ]);
+
+            $this->orderService->update($order, [
+                Order::STRIPE_PAYMENT_ID_COLUMN => $paymentIntent->id
+            ]);
+
             return $this->withSuccess([
                 'order'        => $this->orderTransformer->transform($order),
+                'clientSecret' => $paymentIntent->client_secret
             ]);
         } catch (Throwable $e) {
             Log::error($e->getMessage());
 
             return $this->withError('Internal error occurred, please retry later.');
         }
+    }
+
+    /**
+     * @param Product|null $product
+     * @return int
+     */
+    private function calculateAmount(Product $product): int
+    {
+        return $product->getDiscount() === 0
+            ? $product->getPrice()
+            : intval($product->getPrice() - ($product->getPrice() * ($product->getDiscount() / 100)));
     }
 }
