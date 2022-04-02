@@ -21,6 +21,14 @@ export default function () {
       dispatch(setToken(token));
       dispatch(setUser(user));
 
+      const returnToProductAfterAuth = localStorage.getItem('returnToProductAfterAuth')
+      if (returnToProductAfterAuth !== null) {
+        localStorage.removeItem('returnToProductAfterAuth')
+        navigator('/product/' + returnToProductAfterAuth)
+
+        return
+      }
+
       navigator('/');
     });
   }
