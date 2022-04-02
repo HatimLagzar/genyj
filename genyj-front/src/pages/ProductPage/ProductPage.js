@@ -47,7 +47,7 @@ export default function ProductPage() {
       return;
     }
 
-    if (authService.isAuth()) {
+    if (authService.isExpired() === false) {
       createOrder(authService.getToken())
 
       return
