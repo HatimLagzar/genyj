@@ -15,6 +15,7 @@ import authService from './app/services/auth/AuthService';
 import './scss/app.scss';
 import OrderPage from './pages/OrderPage/OrderPage';
 import PurchaseCompletion from './pages/PurchaseCompletion/PurchaseCompletion';
+import DashboardPage from './pages/DashboardPage/DashboardPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
           <Route path={'/purchase-completion/:orderId'} element={<PurchaseCompletion />} exact />
           <Route path={'/about'} element={<AboutUs />} exact />
           <Route path={'/contact'} element={<ContactPage />} exact />
+          <Route path={'/dashboard'} element={<DashboardPage />} exact />
           <Route path={'/login'} element={<LoginPage />} exact />
           <Route path={'/register'} element={<RegisterPage />} exact />
           <Route path='*' element={<NotFoundPage />} />
