@@ -2,7 +2,11 @@ import React from 'react';
 
 export default function({order}) {
   return <div className='col-lg-4 col-sm-12'>
-    <h4 className={'mb-3'}>{order.product.title}</h4>
+    <h2 className={'mb-3'}>Detail de la commande</h2>
+    <div className='row mb-2'>
+      <h6>{order.product.title}</h6>
+    </div>
+
     <div className='row mb-2'>
       <div className='col'>
         <h6>Taille</h6>
