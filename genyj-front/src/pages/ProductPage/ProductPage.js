@@ -9,12 +9,14 @@ import ProductExtraImage from '../../components/ProductExtraImage';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLength, setProductId, setSize, setSlim } from '../../app/features/order/orderSlice';
 import orderService from '../../app/services/order/OrderService';
+import OrderOwnerConfirmation from '../../components/OrderOwnerConfirmation/OrderOwnerConfirmation';
+import authService from '../../app/services/auth/AuthService';
 
 export default function ProductPage() {
   const dispatch = useDispatch();
   const orderState = useSelector(state => state.order);
   const [product, setProduct] = useState(null);
-  const navigator = useNavigate()
+  const navigator = useNavigate();
 
   const { id } = useParams();
 
@@ -45,10 +47,36 @@ export default function ProductPage() {
       return;
     }
 
-    orderService.createOrder(orderState).then(response => {
-      const order = response.data.order
-      navigator('/order/' + order.id)
-    });
+    if (authService.isAuth()) {
+      createOrder(authService.getToken())
+
+      return
+    }
+
+    const confirmationBoxNode = document.querySelector('#order-owner-confirmation')
+    if (confirmationBoxNode instanceof HTMLElement) {
+      confirmationBoxNode.className = confirmationBoxNode.className.replace('d-none', '')
+    }
+  }
+
+  function createOrder(token = null) {
+    return orderService.createOrder(orderState, token).then(response => {
+      if (response.status !== 200) {
+        return
+      }
+
+      const order = response.data.order;
+      navigator('/order/' + order.id);
+    })
+  }
+
+  function handleAuthenticateClick() {
+    localStorage.setItem('returnToProductAfterAuth', product.id)
+    navigator('/login')
+  }
+
+  function handleContinueAsGuestClick() {
+    createOrder()
   }
 
   return (product !== null ? (<>
@@ -238,13 +266,19 @@ export default function ProductPage() {
 
                 <div className='call-to-action'>
                   <button
-                    type={'submit'} role={'submit'}
+                    type={'submit'}
+                    role={'submit'}
                     className={'btn btn-dark'}
                   >
                     Acheter Maintenant
                   </button>
                   {/*<button className={'btn btn-outline-dark'}>Ajouter Au Panier</button>*/}
                 </div>
+
+                <OrderOwnerConfirmation
+                  handleAuthenticateClick={handleAuthenticateClick}
+                  handleContinueAsGuestClick={handleContinueAsGuestClick}
+                />
               </form>
 
               <div className='description'>
