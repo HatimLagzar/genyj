@@ -26,7 +26,9 @@ function App() {
       authService.saveToken(token, dispatch);
 
       authService.refreshToken(token).then((response) => {
-        if (!response) {
+        if (response.status !== 200 || !response) {
+          authService.logout()
+
           return;
         }
 

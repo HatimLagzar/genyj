@@ -58,8 +58,12 @@ class AuthService {
   }
 
   isExpired() {
+    if (this.getToken() === 'undefined') {
+      return
+    }
+
     if (this.hasBeenAuthenticated()) {
-      const token = localStorage.getItem('authToken');
+      const token = this.getToken();
       const user = jwtDecode(token);
 
       return user.exp * 1000 < new Date().getTime();

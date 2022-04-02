@@ -48,35 +48,36 @@ export default function ProductPage() {
     }
 
     if (authService.isExpired() === false) {
-      createOrder(authService.getToken())
+      createOrder(authService.getToken());
 
-      return
+      return;
     }
 
-    const confirmationBoxNode = document.querySelector('#order-owner-confirmation')
+    const confirmationBoxNode = document.querySelector('#order-owner-confirmation');
     if (confirmationBoxNode instanceof HTMLElement) {
-      confirmationBoxNode.className = confirmationBoxNode.className.replace('d-none', '')
+      confirmationBoxNode.className = confirmationBoxNode.className.replace('d-none', '');
     }
   }
 
   function createOrder(token = null) {
     return orderService.createOrder(orderState, token).then(response => {
       if (response.status !== 200) {
-        return
+        return;
       }
 
       const order = response.data.order;
       navigator('/order/' + order.id);
-    })
+
+    });
   }
 
   function handleAuthenticateClick() {
-    localStorage.setItem('returnToProductAfterAuth', product.id)
-    navigator('/login')
+    localStorage.setItem('returnToProductAfterAuth', product.id);
+    navigator('/login');
   }
 
   function handleContinueAsGuestClick() {
-    createOrder()
+    createOrder();
   }
 
   return (product !== null ? (<>
@@ -131,6 +132,7 @@ export default function ProductPage() {
                       name={'size'}
                       value={variant.size}
                       required={true}
+                      checked={parseInt(orderState.size) === variant.size}
                       handleChange={e => dispatch(
                         setSize(e.currentTarget.value))}
                     />)
@@ -144,6 +146,7 @@ export default function ProductPage() {
                     text={'14'}
                     name={'slim'}
                     value={'14'}
+                    checked={orderState.slim === '14'}
                     handleChange={e => dispatch(
                       setSlim(e.currentTarget.value))}
                   />
@@ -152,6 +155,7 @@ export default function ProductPage() {
                     text={'15'}
                     name={'slim'}
                     value={'15'}
+                    checked={orderState.slim === '15'}
                     handleChange={e => dispatch(
                       setSlim(e.currentTarget.value))}
                   />
@@ -159,6 +163,7 @@ export default function ProductPage() {
                     id={'slim-16'}
                     text={'16'}
                     name={'slim'}
+                    checked={orderState.slim === '16'}
                     value={'16'} handleChange={e => dispatch(
                     setSlim(e.currentTarget.value))}
                   />
@@ -167,7 +172,7 @@ export default function ProductPage() {
                     text={'17 (standard)'}
                     name={'slim'}
                     value={'17'}
-                    checked
+                    checked={orderState.slim ? orderState.slim === '17' : true}
                     handleChange={e => dispatch(
                       setSlim(e.currentTarget.value))}
                   />
@@ -175,6 +180,7 @@ export default function ProductPage() {
                     id={'slim-18'}
                     text={'18'}
                     name={'slim'}
+                    checked={orderState.slim === '18'}
                     value={'18'}
                     handleChange={e => dispatch(
                       setSlim(e.currentTarget.value))}
@@ -183,6 +189,7 @@ export default function ProductPage() {
                     id={'slim-19'}
                     text={'19'}
                     name={'slim'}
+                    checked={orderState.slim === '19'}
                     value={'19'}
                     handleChange={e => dispatch(
                       setSlim(e.currentTarget.value))}
@@ -192,6 +199,7 @@ export default function ProductPage() {
                     text={'20'}
                     name={'slim'}
                     value={'20'}
+                    checked={orderState.slim === '20'}
                     handleChange={e => dispatch(
                       setSlim(e.currentTarget.value))}
                   />
@@ -204,6 +212,7 @@ export default function ProductPage() {
                     text={'92cm'}
                     name={'length'}
                     value={'92'}
+                    checked={orderState.length === '92'}
                     handleChange={e => dispatch(
                       setLength(e.currentTarget.value))}
                   />
@@ -211,6 +220,7 @@ export default function ProductPage() {
                     id={'height-13'} text={'95cm'}
                     name={'length'}
                     value={'95'}
+                    checked={orderState.length === '95'}
                     handleChange={e => dispatch(
                       setLength(e.currentTarget.value))}
                   />
@@ -218,6 +228,7 @@ export default function ProductPage() {
                     id={'height-14'} text={'98cm'}
                     name={'length'}
                     value={'98'}
+                    checked={orderState.length === '98'}
                     handleChange={e => dispatch(
                       setLength(e.currentTarget.value))}
                   />
@@ -226,7 +237,7 @@ export default function ProductPage() {
                     text={'100cm (standard)'}
                     name={'length'}
                     value={'100'}
-                    checked
+                    checked={orderState.length ? orderState.length === '100' : true}
                     handleChange={e => dispatch(
                       setLength(e.currentTarget.value))}
                   />
@@ -235,6 +246,7 @@ export default function ProductPage() {
                     text={'103cm'}
                     name={'length'}
                     value={'103'}
+                    checked={orderState.length === '103'}
                     handleChange={e => dispatch(
                       setLength(e.currentTarget.value))}
                   />
@@ -243,6 +255,7 @@ export default function ProductPage() {
                     text={'106cm'}
                     name={'length'}
                     value={'106'}
+                    checked={orderState.length === '106'}
                     handleChange={e => dispatch(
                       setLength(e.currentTarget.value))}
                   />
@@ -251,6 +264,7 @@ export default function ProductPage() {
                     text={'110cm'}
                     name={'length'}
                     value={'110'}
+                    checked={orderState.length === '110'}
                     handleChange={e => dispatch(
                       setLength(e.currentTarget.value))}
                   />
@@ -259,6 +273,7 @@ export default function ProductPage() {
                     text={'115cm'}
                     name={'length'}
                     value={'115'}
+                    checked={orderState.length === '115'}
                     handleChange={e => dispatch(
                       setLength(e.currentTarget.value))}
                   />
