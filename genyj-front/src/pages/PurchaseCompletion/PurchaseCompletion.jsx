@@ -32,9 +32,10 @@ export default function() {
           : <div className={'container'}>
             <div className='row'>
               <div className='col-lg-7 col-sm-12'>
-                <h1><img className={'me-3'} style={{verticalAlign: 'baseline'}} width={35} src='/img/congrats.png' alt='' />Felicitation, ta commande est passe avec success.</h1>
+                <h1 className={'mb-3'}><img className={'me-3'} style={{verticalAlign: 'baseline'}} width={35} src='/img/congrats.png' alt='' />Felicitation, ta commande est passe avec success.</h1>
                 <p>Le produit sera livre cette semaine, notre agent de service client va vous appeller pour confirmer la date et l'heure de livraison.</p>
                 <p>Voici les details de la commande.</p>
+                <p>Si vous avez des questions, appellez-nous sur +2126 95 30 58 00.</p>
               </div>
               <div className='col'></div>
               <OrderDetails order={order} />
