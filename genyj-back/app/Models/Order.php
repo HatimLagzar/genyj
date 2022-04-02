@@ -20,13 +20,15 @@ class Order extends ModelUuid
     public const ADDRESS_L1_COLUMN = 'address_l1';
     public const ADDRESS_L2_COLUMN = 'address_l2';
     public const USER_ID_COLUMN = 'user_id';
+    public const STRIPE_PAYMENT_ID_COLUMN = 'stripe_payment_id';
 
     protected $fillable = [
         self::PRODUCT_ID_COLUMN,
         self::SIZE_COLUMN,
         self::LENGTH_COLUMN,
         self::SLIM_COLUMN,
-        self::USER_ID_COLUMN
+        self::USER_ID_COLUMN,
+        self::STRIPE_PAYMENT_ID_COLUMN
     ];
 
     private ?Product $product = null;
@@ -71,5 +73,10 @@ class Order extends ModelUuid
     public function getUserId(): ?string
     {
         return $this->getAttribute(self::USER_ID_COLUMN);
+    }
+
+    public function getStripePaymentId(): ?string
+    {
+        return $this->getAttribute(self::STRIPE_PAYMENT_ID_COLUMN);
     }
 }
