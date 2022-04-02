@@ -69,26 +69,15 @@ class AuthService {
     return true;
   }
 
-  /**
-   * @returns {boolean}
-   */
-  isAuth() {
-    if (this.hasBeenAuthenticated() === false) {
-      return false
-    }
-
-    if (this.isExpired()) {
-      return false;
-    }
-
-    return true;
-  }
-
   getToken() {
     return localStorage.getItem('authToken');
   }
 
   getUser() {
+    if (this.getToken() === null) {
+      return null;
+    }
+
     return jwtDecode(localStorage.getItem('authToken'));
   }
 
