@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RefreshController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Contact\ContactUsController;
 use App\Http\Controllers\Api\Order\CreateOrderController;
 use App\Http\Controllers\Api\Order\GetOrderController;
 use App\Http\Controllers\Api\Order\GetOrderWithPaymentIntentController;
@@ -48,3 +49,5 @@ Route::prefix('order')
         Route::put('{order}/status', UpdateStatusController::class);
         Route::post('{order}/paymentType', UpdatePaymentTypeController::class);
     });
+
+Route::post('contact-us', ContactUsController::class);
