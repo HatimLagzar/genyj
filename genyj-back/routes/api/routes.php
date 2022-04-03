@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\Order\UpdateStatusController;
 use App\Http\Controllers\Api\Products\GetFeaturedProductsController;
 use App\Http\Controllers\Api\Products\GetProductController;
 use App\Http\Controllers\Api\Products\IndexController as ProductsIndexController;
+use App\Http\Controllers\Api\Subscribers\StoreController as SubscribeNewsletterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,3 +52,4 @@ Route::prefix('order')
     });
 
 Route::post('contact-us', ContactUsController::class);
+Route::post('subscribe', SubscribeNewsletterController::class);
