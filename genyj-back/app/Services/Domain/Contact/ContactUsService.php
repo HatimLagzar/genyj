@@ -2,6 +2,7 @@
 
 namespace App\Services\Domain\Contact;
 
+use App\Mail\ContactUsMail;
 use Illuminate\Support\Facades\Mail;
 
 class ContactUsService
@@ -10,6 +11,9 @@ class ContactUsService
     {
         $subject = $name . ' || ' . $email . ' || ' . $subject;
 
-        return \mail(env('MAIL_FROM_ADDRESS'), $subject, htmlentities($message));
+        Mail::to(env('MAIL_FROM_ADDRESS'))
+            ->send(new ContactUsMail($name, $email, $subject, $message));
+
+        return true;
     }
 }
