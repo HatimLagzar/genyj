@@ -11,4 +11,11 @@ class SubscriberRepository
         return Subscriber::query()
             ->create($attributes);
     }
+
+    public function findByEmail(string $email): ?Subscriber
+    {
+        return Subscriber::query()
+            ->where(Subscriber::EMAIL_COLUMN, $email)
+            ->first();
+    }
 }

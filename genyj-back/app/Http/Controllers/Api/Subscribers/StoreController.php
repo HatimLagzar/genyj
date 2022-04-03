@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Subscribers;
 
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\CreateSubscriberRequest;
+use App\Models\Subscriber;
 use App\Services\Core\Subscriber\SubscriberService;
 use Illuminate\Support\Facades\Log;
 use Throwable;
@@ -20,6 +21,13 @@ class StoreController extends BaseController
     public function __invoke(CreateSubscriberRequest $request)
     {
         try {
+            $subscriber = $this->subscriberService->findByEmail($request->get('email'));
+            if ($subscriber instanceof Subscriber) {
+                return $this->withSuccess([
+                    'message' => 'You are already subscribed.'
+                ]);
+            }
+
             $this->subscriberService->create($request->all());
 
             return $this->withSuccess([

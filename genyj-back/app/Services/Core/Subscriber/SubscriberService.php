@@ -18,4 +18,9 @@ class SubscriberService
     {
         return $this->subscriberRepository->create($attributes);
     }
+
+    public function findByEmail(string $email): ?Subscriber
+    {
+        return $this->subscriberRepository->findByEmail($email);
+    }
 }
