@@ -20,7 +20,7 @@ export default function ChoosePaymentType({ nextStepCallback }) {
         return;
       }
 
-      nextStepCallback();
+      nextStepCallback(type);
     });
   }
 

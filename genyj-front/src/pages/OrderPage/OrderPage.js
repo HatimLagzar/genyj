@@ -17,8 +17,8 @@ export default function() {
   const { id } = useParams();
   const [order, setOrder] = useState(null);
   const [clientSecret, setClientSecret] = useState('');
-  const [step, setStep] = useState('PAYMENT_TYPE_STEP'); // PAYMENT_TYPE_STEP | ADDRESS_STEP
-  const navigator = useNavigate()
+  const [step, setStep] = useState('ADDRESS_STEP'); // PAYMENT_TYPE_STEP | ADDRESS_STEP
+  const navigator = useNavigate();
 
   function handleAddressSubmit(addressState) {
     return orderService.saveAddress(addressState, order.id).then((response) => {
@@ -69,7 +69,8 @@ export default function() {
                 }
                 {
                   step === 'PAYMENT_TYPE_STEP'
-                    ? <ChoosePaymentType nextStepCallback={() => navigator('/purchase-completion/' + order.id)} />
+                    ? <ChoosePaymentType nextStepCallback={(type) => type === 'COD' ? navigator(
+                      '/purchase-completion/' + order.id) : setStep('PAYMENT_STEP')} />
                     : ''
                 }
                 {
