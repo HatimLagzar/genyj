@@ -26,5 +26,6 @@ COPY . ./
 RUN composer install
 RUN npm install --global yarn
 RUN yarn install
+RUN php artisan storage:link
 
 CMD [ "php", "artisan", "serv", "--host=0.0.0.0" ]
