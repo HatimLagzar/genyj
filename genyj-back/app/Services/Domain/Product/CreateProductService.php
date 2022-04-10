@@ -36,13 +36,13 @@ class CreateProductService
     public function create(array $attributes): Product
     {
         if (Arr::has($attributes, [
-                'title',
-                'price',
-                'discount',
-                'description',
-                'thumbnail',
-                'variants'
-            ]) === false) {
+            'title',
+            'price',
+            'discount',
+            'description',
+            'thumbnail',
+            'variants'
+        ]) === false) {
             throw new InvalidPayloadException();
         }
 
@@ -56,17 +56,13 @@ class CreateProductService
             'extraImages'
         ]);
 
-        $title = filter_var($attributes['title'], FILTER_SANITIZE_STRING);
+        $title = htmlentities($attributes['title']);
         $price = filter_var($attributes['price'], FILTER_SANITIZE_NUMBER_FLOAT);
         $discount = filter_var($attributes['discount'], FILTER_SANITIZE_NUMBER_FLOAT);
-        $description = filter_var($attributes['description'], FILTER_SANITIZE_STRING);
+        $description = htmlentities($attributes['description']);
         $thumbnail = $attributes['thumbnail'];
         $thumbnailFileName = $thumbnail->hashName();
-
-        $variants = json_decode($attributes['variants']);
-        if ($variants === false) {
-            throw new InvalidProductVariantsException();
-        }
+        $variants = $attributes['variants'];
 
         if (!Storage::exists('public/products_thumbnails')) {
             Storage::makeDirectory('public/products_thumbnails');

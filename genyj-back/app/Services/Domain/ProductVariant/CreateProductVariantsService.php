@@ -21,8 +21,8 @@ class CreateProductVariantsService
             $this->productVariantService->create(
                 $product,
                 [
-                    ProductVariant::SIZE_COLUMN => $variant->size,
-                    ProductVariant::STOCK_COLUMN => $variant->stock,
+                    ProductVariant::SIZE_COLUMN => $variant['size'],
+                    ProductVariant::STOCK_COLUMN => $variant['stock'],
                 ]
             );
         }
