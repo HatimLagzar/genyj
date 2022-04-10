@@ -16,7 +16,7 @@ class ProductTransformer
             'price'                    => $product->getPrice(),
             'priceFormatted'           => $product->getPriceFormatted() . ' MAD',
             'discount'                 => $product->getDiscount(),
-            'priceDiscountedFormatted' => ($product->getPriceFormatted() - ($product->getPriceFormatted() * $product->getDiscount()) / 100) . ' MAD',
+            'priceDiscountedFormatted' => number_format($product->getPriceFormatted() - ($product->getPriceFormatted() * $product->getDiscount()) / 100, 2) . ' MAD',
             'variants'                 => $product->getVariants(),
             'extraImages'              => $product->getExtraImages(),
         ];
