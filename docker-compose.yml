@@ -1,0 +1,47 @@
+version: '3.1'
+
+services:
+  genyj-front: 
+    build: ./genyj-front
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: "./genyj-front"
+        target: "/var/www"
+    restart: always
+    networks:
+      - genyj
+
+  genyj-back:
+    build: ./genyj-back
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: bind
+        source: "./genyj-back"
+        target: "/var/www"
+    restart: always
+    networks:
+      - genyj
+
+  genyj-db:
+    platform: linux/amd64
+    image: mysql
+    restart: always
+    volumes:
+      - genyj_db_data:/var/lib/mysql:rw
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "genyj"
+      MYSQL_ROOT_PASSWORD: "root"
+    networks:
+      - genyj
+
+networks:
+  genyj:
+    driver: bridge
+  
+volumes:
+  genyj_db_data: {}
