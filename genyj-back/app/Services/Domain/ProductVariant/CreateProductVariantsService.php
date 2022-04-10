@@ -18,6 +18,10 @@ class CreateProductVariantsService
     public function create(Product $product, array $variants)
     {
         foreach ($variants as $variant) {
+            if (empty($variant['size']) || empty($variant['stock'])) {
+                continue;
+            }
+
             $this->productVariantService->create(
                 $product,
                 [

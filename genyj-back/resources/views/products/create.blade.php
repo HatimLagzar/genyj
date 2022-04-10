@@ -23,7 +23,7 @@
 
         <div class="form-group mb-2">
             <label for="priceInput">Price</label>
-            <input id="priceInput" type="number" step=".1"
+            <input id="priceInput" type="number" step="any"
                    class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price"
                    value="{{ old('price') }}">
 

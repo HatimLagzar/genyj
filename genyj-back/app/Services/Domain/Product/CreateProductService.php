@@ -57,8 +57,8 @@ class CreateProductService
         ]);
 
         $title = htmlentities($attributes['title']);
-        $price = filter_var($attributes['price'], FILTER_SANITIZE_NUMBER_FLOAT);
-        $discount = filter_var($attributes['discount'], FILTER_SANITIZE_NUMBER_FLOAT);
+        $price = filter_var($attributes['price'], FILTER_VALIDATE_FLOAT);
+        $discount = filter_var($attributes['discount'], FILTER_VALIDATE_FLOAT);
         $description = htmlentities($attributes['description']);
         $thumbnail = $attributes['thumbnail'];
         $thumbnailFileName = $thumbnail->hashName();
@@ -74,7 +74,7 @@ class CreateProductService
 
         $product = $this->productService->create([
             Product::TITLE_COLUMN => $title,
-            Product::PRICE_COLUMN => $price,
+            Product::PRICE_COLUMN => $price * 100,
             Product::DISCOUNT_COLUMN => $discount,
             Product::DESCRIPTION_COLUMN => $description,
             Product::THUMBNAIL_COLUMN => $thumbnailFileName,

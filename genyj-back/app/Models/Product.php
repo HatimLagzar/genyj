@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends ModelUuid
 {
-	use HasFactory;
+    use HasFactory;
 
     public const TABLE = 'products';
 
@@ -77,7 +77,7 @@ class Product extends ModelUuid
         return $this->getAttribute(self::PRICE_COLUMN);
     }
 
-    public function getPriceFormatted(): int
+    public function getPriceFormatted(): string
     {
         return number_format($this->getPrice() / 100, 2);
     }

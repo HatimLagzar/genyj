@@ -52,15 +52,11 @@ class UpdateProductService
             throw new InvalidPayloadException();
         }
 
-        $title = filter_var($attributes['title'], FILTER_SANITIZE_STRING);
-        $price = filter_var($attributes['price'], FILTER_SANITIZE_NUMBER_INT);
-        $discount = filter_var($attributes['discount'], FILTER_SANITIZE_NUMBER_FLOAT);
-        $description = filter_var($attributes['description'], FILTER_SANITIZE_STRING);
-
-        $variants = json_decode($attributes['variants']);
-        if ($variants === false) {
-            throw new InvalidProductVariantsException();
-        }
+        $title = htmlentities($attributes['title']);
+        $price = filter_var($attributes['price'], FILTER_VALIDATE_FLOAT);
+        $discount = filter_var($attributes['discount'], FILTER_VALIDATE_FLOAT);
+        $description = htmlentities($attributes['description']);
+        $variants = $attributes['variants'];
 
         $thumbnailFileName = $product->getThumbnail();
         if (Arr::has($attributes, 'thumbnail')) {
@@ -71,7 +67,7 @@ class UpdateProductService
 
         $this->productService->update($product, [
             Product::TITLE_COLUMN => $title,
-            Product::PRICE_COLUMN => $price,
+            Product::PRICE_COLUMN => $price * 100,
             Product::DISCOUNT_COLUMN => $discount,
             Product::DESCRIPTION_COLUMN => $description,
             Product::THUMBNAIL_COLUMN => $thumbnailFileName

@@ -28,7 +28,7 @@
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $product->getTitle() }}</td>
-                <td>{{ $product->getPrice() / 100 }} MAD</td>
+                <td>{{ $product->getPriceFormatted() }} MAD</td>
                 <td>{{ $product->getDiscount() }}%</td>
                 <td>{{ $product->getDescription() }}</td>
                 <td>

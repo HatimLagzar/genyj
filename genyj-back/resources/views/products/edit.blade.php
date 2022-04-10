@@ -24,9 +24,9 @@
 
         <div class="form-group mb-2">
             <label for="priceInput">Price</label>
-            <input id="priceInput" type="number" step=".1"
+            <input id="priceInput" type="number" step="any"
                    class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price"
-                   value="{{ old('price', $product->getPrice() / 100) }}">
+                   value="{{ old('price', $product->getPriceFormatted()) }}">
 
             @error('price')
             <div class="invalid-feedback">
